@@ -67,9 +67,16 @@ _LOGGER = logging.getLogger(__name__)
 
 DATA_SCHEMA = vol.Schema(
     {
-        vol.Required(CONF_HOST, default="192.168.1.2"): str,
-        vol.Required(CONF_USERNAME, default="admin"): str,
+        vol.Required(CONF_HOST): str,
+        vol.Required(CONF_USERNAME): str,
         vol.Required(CONF_PASSWORD): str,
+    }
+)
+
+
+NAME_SCHEMA = vol.Schema(
+    {
+        vol.Required(CONF_NAME, default="NetX Thermostat"): str,
     }
 )
 
@@ -111,6 +118,12 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     VERSION = 1
 
+    def __init__(self):
+        """Initialize the config flow."""
+        self._host = None
+        self._username = None
+        self._password = None
+
     async def async_step_user(self, user_input=None):
         """Handle the initial step."""
         errors = {}
@@ -118,7 +131,12 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             try:
                 info = await validate_input(self.hass, user_input)
-                return self.async_create_entry(title=info["title"], data=user_input)
+                # Store credentials for next step
+                self._host = user_input[CONF_HOST]
+                self._username = user_input[CONF_USERNAME]
+                self._password = user_input[CONF_PASSWORD]
+                # Move to name step
+                return await self.async_step_name()
             except CannotConnect:
                 errors["base"] = "cannot_connect"
             except InvalidAuth:
@@ -129,6 +147,27 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         return self.async_show_form(
             step_id="user", data_schema=DATA_SCHEMA, errors=errors
+        )
+
+    async def async_step_name(self, user_input=None):
+        """Handle the device naming step."""
+        if user_input is not None:
+            # Combine all data
+            data = {
+                CONF_HOST: self._host,
+                CONF_USERNAME: self._username,
+                CONF_PASSWORD: self._password,
+                "device_name": user_input[CONF_NAME],
+            }
+            return self.async_create_entry(
+                title=user_input[CONF_NAME],
+                data=data
+            )
+
+        return self.async_show_form(
+            step_id="name",
+            data_schema=NAME_SCHEMA,
+            description_placeholders={"host": self._host}
         )
 
 
@@ -163,6 +202,7 @@ from homeassistant.components.climate import (
     ClimateEntity,
     ClimateEntityFeature,
     HVACMode,
+    HVACAction,
 )
 from homeassistant.const import (
     ATTR_TEMPERATURE,
@@ -337,9 +377,32 @@ class NetXClimate(CoordinatorEntity, ClimateEntity):
             return HVACMode.OFF
 
     @property
+    def hvac_action(self):
+        """Return the current running hvac operation."""
+        sysstat = self.coordinator.data.get("sysstat", "IDLE")
+        fan = self.coordinator.data.get("curfan", "AUTO")
+        
+        # Check system status for active heating/cooling
+        if "HEAT" in sysstat:
+            return HVACAction.HEATING
+        elif "COOL" in sysstat:
+            return HVACAction.COOLING
+        elif fan == "ON" and sysstat == "IDLE":
+            return HVACAction.FAN
+        elif sysstat == "IDLE":
+            return HVACAction.IDLE
+        else:
+            return HVACAction.IDLE
+
+    @property
     def extra_state_attributes(self):
         """Return extra state attributes."""
         attrs = {}
+        
+        # Add system status
+        sysstat = self.coordinator.data.get("sysstat")
+        if sysstat:
+            attrs["system_status"] = sysstat
         
         # Add CO2 data if available
         if self.coordinator.data.get("co2_level"):
@@ -663,6 +726,16 @@ for filename, content in files.items():
     print(f"Created: {filepath}")
 
 print("\n✅ All files created successfully in the 'netx_thermostat' folder!")
+print("\nFiles created:")
+print("  - manifest.json")
+print("  - __init__.py")
+print("  - config_flow.py")
+print("  - const.py")
+print("  - climate.py")
+print("  - sensor.py")
+print("  - strings.json")
+print("  - icons.json")
+print("  - README.md")
 print("\nNext steps:")
 print("1. Copy the 'netx_thermostat' folder to your Home Assistant 'custom_components' directory")
 print("2. Restart Home Assistant")
