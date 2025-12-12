@@ -1,6 +1,6 @@
 # NetX Thermostat Integration for Home Assistant
 
-This custom integration allows you to control and monitor a NetX Thermostat in Home Assistant version 2025.12.12.
+This custom integration allows you to control and monitor a NetX Thermostat from https://networkthermostat.com in Home Assistant.
 
 ## Features
 
@@ -18,32 +18,9 @@ This custom integration allows you to control and monitor a NetX Thermostat in H
 
 ## Installation
 
-1. Create a `custom_components` folder in your Home Assistant config directory if it doesn't exist
-2. Create a `netx_thermostat` folder inside `custom_components`
-3. Copy all the integration files into the `netx_thermostat` folder:
-   - `__init__.py`
-   - `manifest.json`
-   - `config_flow.py`
-   - `const.py`
-   - `climate.py`
-   - `sensor.py`
-   - `strings.json`
-
-Your folder structure should look like:
-```
-config/
-  custom_components/
-    netx_thermostat/
-      __init__.py
-      manifest.json
-      config_flow.py
-      const.py
-      climate.py
-      sensor.py
-      strings.json
-```
-
-4. Restart Home Assistant
+1. Install this repo via HACS by copying the link into the custom repos option
+2. Manual install requires copying the custom_components folder into your Home Assistant installation.
+3. Restart Home Assistant
 
 ## Configuration
 
@@ -52,7 +29,7 @@ config/
 3. Search for "NetX Thermostat"
 4. Enter your thermostat details:
    - **IP Address**: The local IP of your thermostat (e.g., 192.168.1.2)
-   - **Username**: Your thermostat username (default: admin)
+   - **Username**: Your thermostat username
    - **Password**: Your thermostat password
 
 ## Usage
@@ -67,15 +44,6 @@ The climate entity will show:
 - Current HVAC mode
 - Fan mode in attributes
 - CO2 data in attributes
-
-## Temperature Control
-
-You can control the thermostat through:
-- The climate entity card in Lovelace
-- Automations and scripts
-- Voice assistants (via Home Assistant)
-
-Temperature setpoints are limited to 64-86°F as per the thermostat specifications.
 
 ## Troubleshooting
 
@@ -97,3 +65,8 @@ Temperature setpoints are limited to 64-86°F as per the thermostat specificatio
 - Manual changes made at the thermostat will be reflected in Home Assistant
 - Fan mode "AUTO" means the fan is off and will run only when heating/cooling
 - Fan mode "ON" means the fan is continuously running
+
+## Known Issues
+
+- Fan Only Mode is not working as expected with the thermostat lovelace card
+- This integration has only been tested with the X7C-IP
