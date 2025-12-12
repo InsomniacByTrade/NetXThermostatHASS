@@ -70,9 +70,6 @@ The climate entity will show:
 - Fan mode "ON" means the fan is continuously running
 - These thermostats aren't typically sold to customers and are quite pricy for the ones with ethernet. (~$600).  Places like [Controls Depot](https://controlsdepot.com) seem to sell direct to consumer however I have not personally confirmed this.
 - The devices from [NetworkThermostat](https://networkthermostat.com) are the only ones I am aware of that have local control and **ETHERNET**
-## Known Issues
-
-- Turning off the thermostat changes the mode to fan only mode on the lovelace card.
 - This integration has only been tested with the X7C-IP
 
 ## Licenses
