@@ -1,6 +1,6 @@
 # NetX Thermostat Integration for Home Assistant
 
-This unofficial custom integration allows you to control and monitor a NetX Ethernet Thermostat locally in Home Assistant.
+This unofficial custom integration allows you to control and monitor a [NetworkThermostat](https://networkthermostat.com) (NetX) device locally in Home Assistant.
 
 ## Features
 
@@ -68,8 +68,8 @@ The climate entity will show:
 - Manual changes made at the thermostat will be reflected in Home Assistant
 - Fan mode "AUTO" means the fan is off and will run only when heating/cooling
 - Fan mode "ON" means the fan is continuously running
-- These thermostats aren't typically sold to customers and are quite pricy. (~$600)
-- The devices from https://networkthermostat.com are the only ones I am aware of that have local control and ethernet
+- These thermostats aren't typically sold to customers and are quite pricy. (~$600).  Places like [Controls Depot](https://controlsdepot.com) seem to sell direct to consumer however I have not personally confirmed this.
+- The devices from [NetworkThermostat](https://networkthermostat.com) are the only ones I am aware of that have local control and **ETHERNET**
 ## Known Issues
 
 - Turning off the thermostat changes the mode to fan only mode on the lovelace card.
