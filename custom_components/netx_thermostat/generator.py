@@ -30,7 +30,7 @@ from homeassistant.core import HomeAssistant
 _LOGGER = logging.getLogger(__name__)
 
 DOMAIN = "netx_thermostat"
-PLATFORMS = ["climate", "sensor"]
+PLATFORMS = ["climate", "sensor", "button"]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
@@ -733,6 +733,7 @@ print("  - config_flow.py")
 print("  - const.py")
 print("  - climate.py")
 print("  - sensor.py")
+print("  - button.py")
 print("  - strings.json")
 print("  - icons.json")
 print("  - README.md")

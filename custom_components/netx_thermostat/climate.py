@@ -96,9 +96,17 @@ class NetXDataUpdateCoordinator(DataUpdateCoordinator):
 
             # Add CO2 data if available
             if co2_data and "co2" in co2_data:
-                data["co2_level"] = co2_data["co2"].get("level")
-                data["co2_peak_level"] = co2_data["co2"].get("peak_level")
-                data["co2_alert_level"] = co2_data["co2"].get("alert_level")
+                co2_info = co2_data["co2"]
+                data["co2_level"] = co2_info.get("level")
+                data["co2_peak_level"] = co2_info.get("peak_level")
+                data["co2_alert_level"] = co2_info.get("alert_level")
+                data["co2_type"] = co2_info.get("type")
+                data["co2_valid"] = co2_info.get("valid")
+                data["co2_in_alert"] = co2_info.get("in_alert")
+                data["co2_peak_reset"] = co2_info.get("peak_reset")
+                data["co2_display"] = co2_info.get("display")
+                data["co2_relay_high"] = co2_info.get("relay_high")
+                data["co2_relay_failure"] = co2_info.get("relay_failure")
 
             return data
 

@@ -15,6 +15,11 @@
       "co2_alert_level": {
         "default": "mdi:alert-circle"
       }
+    },
+    "button": {
+      "restart": {
+        "default": "mdi:restart"
+      }
     }
   }
 }
