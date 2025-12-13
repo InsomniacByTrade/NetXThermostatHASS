@@ -19,7 +19,7 @@ This unofficial custom integration allows you to control and monitor a [NetworkT
   - CO2 Level (ppm)
   - CO2 Peak Level (ppm)
   - CO2 Alert Level (ppm)
-  - ** And More**
+  - **And More**
 
 - **Temperature Sensors**
   - Outdoor Temperature
