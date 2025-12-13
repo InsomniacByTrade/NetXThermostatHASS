@@ -12,35 +12,6 @@ This unofficial custom integration allows you to control and monitor a [NetworkT
   - View fan status (AUTO/ON)
   - Real-time HVAC action status (actively heating, cooling, fan, or idle)
 
-- **Restart Button**
-  - Remotely restart/reboot the thermostat
-
-- **CO2 Monitoring Sensors**
-  - CO2 Level (ppm)
-  - CO2 Peak Level (ppm)
-  - CO2 Alert Level (ppm)
-  - **And More**
-
-- **Temperature Sensors**
-  - Outdoor Temperature
-  - Occupied/Unoccupied Cool/Heat Setpoint Limits
-
-- **Humidity Sensors**
-  - Indoor / Outdoor Humidity
-
-- **Schedule & Program Sensors**
-  - Manual Program Status
-  - Current Schedule
-  - Schedule Status
-  - Override Status
-
-- **System Status Sensors**
-  - Lock Status
-
-- **Additional Sensors**
-  - 6 configurable sensor inputs (sensor0-5)
-  - X7 system sensors (no idea what these are to be honest)
-
 ## Installation
 
 - **Via HACS**
@@ -92,21 +63,11 @@ Sensors that report "--" in the thermostat data will show as "unavailable" in Ho
 ## Notes
 
 - The integration polls the thermostat every 30 seconds for updates
-- Manual changes made at the thermostat will be reflected in Home Assistant
-- Fan mode "AUTO" means the fan is off and will run only when heating/cooling
-- Fan mode "ON" means the fan is continuously running
 - These thermostats aren't typically sold to customers and are quite pricy for the ones with ethernet. (~$600).  Places like [Controls Depot](https://controlsdepot.com) seem to sell direct to consumer however I have not personally confirmed this.
 - The devices from [NetworkThermostat](https://networkthermostat.com) are the only ones I am aware of that have local control and **ETHERNET**
 - This integration has only been tested with the X7C-IP
 - The schedules tab on the device is unlikely to be added to this integration as you should probably use Home Assistant's native automations for that.
 - I have not tested other products from NetworkThermostat like the temperature sensors they offer to get a median temperature, so while they *should* would your milage my vary
-
-## Licenses
-I personally don't care much about what you choose to do with this program, even If I put a strict license on this repo I...
-- 1. Wouldn't be able to defend myself legally more than likely
-- 2. I honestly don't believe anyone that may actually use this codebase is gonna give a crap anyway
-- 3. AI will gobble this page up for more of that sweet, sweet training data!
-> For those reasons all I ask is that you are responsible and maybe link to this repo if you happen to find it useful and wish to share it! :)
 
 ## Support & Warranty
 This repo is not endored or affiliated with NetworkThermostat, NetX or any other party in thereof.  This repo's primary goal is to expand the (albeit borderline nonexistant) userbases' options on how they use their products and what they communicate with.  This repo comes with little support and zero warranty.  You are solely responsible for your usage of the code used in this repository and I take zero responsibility for any damage as a result of anyone using this codebase.
