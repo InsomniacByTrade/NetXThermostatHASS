@@ -19,13 +19,7 @@ This unofficial custom integration allows you to control and monitor a [NetworkT
   - CO2 Level (ppm)
   - CO2 Peak Level (ppm)
   - CO2 Alert Level (ppm)
-  - CO2 Type
-  - CO2 Valid Status
-  - CO2 In Alert Status
-  - CO2 Peak Reset Mode
-  - CO2 Display Mode
-  - CO2 Relay High Status
-  - CO2 Relay Failure Status
+  - **More**
 
 - **Temperature Sensors**
   - Outdoor Temperature
@@ -41,10 +35,7 @@ This unofficial custom integration allows you to control and monitor a [NetworkT
   - Override Status
 
 - **System Status Sensors**
-  - System Adapt Status
-  - Humidity Sensor Status
   - Lock Status
-  - ind0, ind1, ind2
 
 - **Additional Sensors**
   - 6 configurable sensor inputs (sensor0-5)
