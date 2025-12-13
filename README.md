@@ -67,7 +67,7 @@ Sensors that report "--" in the thermostat data will show as "unavailable" in Ho
 - The devices from [NetworkThermostat](https://networkthermostat.com) are the only ones I am aware of that have local control and **ETHERNET**
 - This integration has only been tested with the X7C-IP
 - The schedules tab on the device is unlikely to be added to this integration as you should probably use Home Assistant's native automations for that.
-- I have not tested other products from NetworkThermostat like the temperature sensors they offer to get a median temperature, so while they *should* would your milage my vary
+- I have not tested other products from NetworkThermostat like the temperature sensors they offer to get a median temperature, so while they *should* work your milage my vary
 
 ## Support & Warranty
 This repo is not endored or affiliated with NetworkThermostat, NetX or any other party in thereof.  This repo's primary goal is to expand the (albeit borderline nonexistant) userbases' options on how they use their products and what they communicate with.  This repo comes with little support and zero warranty.  You are solely responsible for your usage of the code used in this repository and I take zero responsibility for any damage as a result of anyone using this codebase.
