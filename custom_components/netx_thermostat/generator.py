@@ -15,11 +15,11 @@ files = {
   "name": "NetX Thermostat",
   "codeowners": [],
   "config_flow": true,
-  "documentation": "https://github.com/yourusername/netx_thermostat",
+  "documentation": "https://github.com/InsomniacByTrade/NetXThermostatHASS",
   "integration_type": "device",
   "iot_class": "local_polling",
   "requirements": [],
-  "version": "1.0.0"
+  "version": "1.1.1"
 }''',
 
     "__init__.py": '''"""The NetX Thermostat integration."""
