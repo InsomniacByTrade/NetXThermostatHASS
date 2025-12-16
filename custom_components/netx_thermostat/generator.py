@@ -30,7 +30,7 @@ from homeassistant.core import HomeAssistant
 _LOGGER = logging.getLogger(__name__)
 
 DOMAIN = "netx_thermostat"
-PLATFORMS = ["climate", "sensor", "button"]
+PLATFORMS = ["climate", "sensor", "button", "switch"]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
@@ -184,11 +184,11 @@ class InvalidAuth(HomeAssistantError):
 DOMAIN = "netx_thermostat"
 
 # Temperature limits
-MIN_TEMP = 64
-MAX_TEMP = 86
+MIN_TEMP = 60
+MAX_TEMP = 88
 
 # Update interval in seconds
-UPDATE_INTERVAL = 30
+UPDATE_INTERVAL = 10
 ''',
 
     "climate.py": '''"""Climate platform for NetX Thermostat integration."""
@@ -734,6 +734,7 @@ print("  - const.py")
 print("  - climate.py")
 print("  - sensor.py")
 print("  - button.py")
+print("  - switch.py")
 print("  - strings.json")
 print("  - icons.json")
 print("  - README.md")
