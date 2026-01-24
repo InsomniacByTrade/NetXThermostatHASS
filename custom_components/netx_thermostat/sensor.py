@@ -28,7 +28,6 @@ async def async_setup_entry(
         NetXOutdoorTemperatureSensor(coordinator, config_entry),
         NetXHumiditySensor(coordinator, config_entry),
         NetXCO2Sensor(coordinator, config_entry),
-        NetXCO2PeakSensor(coordinator, config_entry),
         NetXOperationModeSensor(coordinator, config_entry),
         NetXOperatingStatusSensor(coordinator, config_entry),
         NetXStageSensor(coordinator, config_entry),
@@ -165,49 +164,14 @@ class NetXCO2Sensor(NetXBaseSensor):
     @property
     def extra_state_attributes(self) -> dict:
         """Return extra state attributes."""
-        attrs = {"source": "HTTP API (/co2.json)"}
+        attrs = {}
         if self.coordinator.data:
+            if self.coordinator.data.co2_peak_level:
+                attrs["peak_level"] = self.coordinator.data.co2_peak_level
             if self.coordinator.data.co2_alert_level:
                 attrs["alert_level"] = self.coordinator.data.co2_alert_level
             attrs["in_alert"] = self.coordinator.data.co2_in_alert
         return attrs
-
-
-class NetXCO2PeakSensor(NetXBaseSensor):
-    """CO2 Peak sensor (from HTTP API)."""
-
-    _attr_name = "CO2 Peak"
-    _attr_device_class = SensorDeviceClass.CO2
-    _attr_state_class = SensorStateClass.MEASUREMENT
-    _attr_native_unit_of_measurement = CONCENTRATION_PARTS_PER_MILLION
-    _attr_icon = "mdi:molecule-co2"
-
-    def __init__(self, coordinator: NetXDataUpdateCoordinator, config_entry: ConfigEntry) -> None:
-        """Initialize the sensor."""
-        super().__init__(coordinator, config_entry)
-        self._attr_unique_id = f"{config_entry.entry_id}_co2_peak"
-
-    @property
-    def native_value(self) -> int | None:
-        """Return the peak CO2 level."""
-        if self.coordinator.data:
-            return self.coordinator.data.co2_peak_level
-        return None
-
-    @property
-    def available(self) -> bool:
-        """Return if entity is available."""
-        return (
-            self.coordinator.last_update_success
-            and self.coordinator.data is not None
-            and self.coordinator.data.co2_peak_level is not None
-            and self.coordinator.data.co2_peak_level > 0
-        )
-
-    @property
-    def extra_state_attributes(self) -> dict:
-        """Return extra state attributes."""
-        return {"source": "HTTP API (/co2.json)", "description": "Peak CO2 level since last reset"}
 
 
 class NetXOperationModeSensor(NetXBaseSensor):
