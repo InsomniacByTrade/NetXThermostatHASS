@@ -89,7 +89,7 @@ RAS1:70,NA,HEAT,FAN AUTO,NO,NO,77,68,HEAT,1,NONE
 
 **Response:** `RRHS1:{humidity_percent}`
 
-**Note:** Returns `0` if no humidity sensor is directly connected. Humidity may be available via the CO2 module through the HTTP API instead.
+**Note:** Humidity and CO2 are grabbed via HTTP requests instead.
 
 ### RNS1 - Read Operation Mode (Manual/Schedule)
 
@@ -298,7 +298,7 @@ WMDHS1DWC,60,3  → With Cooling, 60%, ±3%
 
 3. **Humidity Sensor:** The `RRHS1` command may return `0` if the humidity sensor is connected to the CO2 module rather than directly to the thermostat. In this case, use the HTTP API (`/co2.json`) to read humidity.
 
-4. **CO2 Sensor:** CO2 readings are typically not available via TCP API. Use the HTTP API (`/co2.json`) for CO2 data.
+4. **CO2 Sensor:** CO2 readings are not available via TCP API. Use the HTTP API (`/co2.json`) for CO2 data.
 
 5. **Temperature Limits:**
    - Heat setpoint: 35-89°F
