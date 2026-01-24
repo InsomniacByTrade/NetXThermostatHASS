@@ -33,12 +33,6 @@ This unofficial custom integration allows you to control and monitor a [NetworkT
    - **Password**: Your thermostat password
 5. Give your thermostat a custom name (e.g., "Living Room Thermostat")
 
-## Troubleshooting
-
-**Cannot connect**: Verify the IP address is correct and the thermostat is reachable on your network.
-
-**Invalid credentials**: Double-check your username and password.
-
 ## Notes
 
 - These thermostats aren't typically sold to customers and are quite pricy for the ones with ethernet. (~$600).  Places like [Controls Depot](https://controlsdepot.com) seem to sell direct to consumer however I have not personally confirmed this.
